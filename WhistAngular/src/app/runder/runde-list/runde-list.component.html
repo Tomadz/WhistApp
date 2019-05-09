@@ -1,0 +1,32 @@
+<table class="table table-hover">
+  <tr>
+    <th>Id</th>
+    <th>SpilId</th>
+    <th>RundeNr</th>
+    <th>Melder</th>
+    <th>Melding</th>
+    <th>PlusId</th>
+    <th>Makker</th>
+    <th>Vundet</th>
+    <th>Beløb</th>
+    <th>Spiller1</th>
+    <th>Spiller2</th>
+    <th>Spiller3</th>
+    <th>Spiller4</th>
+  </tr>
+  <tr *ngFor="let runde of service.list">
+    <td>{{runde.Id}}</td>
+    <td>{{runde.SpilId}}</td>
+    <td>{{runde.RundeNr}}</td>
+    <td>{{runde.Melder}}</td>
+    <td>{{runde.Melding}}</td>
+    <td>{{runde.PlusId}}</td>
+    <td>{{runde.Makker}}</td>
+    <td>{{runde.Vundet}}</td>
+    <td>{{runde.Beloeb}}</td>
+    <td>{{runde.Spiller1}}</td>
+    <td>{{runde.Spiller2}}</td>
+    <td>{{runde.Spiller3}}</td>
+    <td>{{runde.Spiller4}}</td>
+  </tr>
+</table>
