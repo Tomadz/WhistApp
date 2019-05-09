@@ -1,47 +1,47 @@
 <form #form="ngForm" autocomplete="on" (submit)="onSubmit(form)">
-  <input type="hidden" name="Id" [value]="service.formData.Id">
+  <input type="hidden" name="id" [value]="service.formData.id">
   <div class="form-row">
     <div class="col-md">
         <div class="form-group">
-            <input name="SpilId" #SpilId="ngModel" [(ngModel)]="service.formData.SpilId" type="number" placeholder="SpilId" class="form-control">
+            <input tabindex="1" name="spilId" #spilId="ngModel" [(ngModel)]="service.formData.spilId" type="number" placeholder="SpilId" class="form-control">
           </div>
         <div class="form-group">
-            <input name="Melder" #Melder="ngModel" [(ngModel)]="service.formData.Melder" type="number" placeholder="Melder" class="form-control">
+            <input tabindex="3" name="melder" #melder="ngModel" [(ngModel)]="service.formData.melder" type="number" placeholder="Melder" class="form-control">
           </div>
         <div class="form-group">
-            <input name="PlusId" #PlusId="ngModel" [(ngModel)]="service.formData.PlusId" type="number" placeholder="PlusId" class="form-control">
+            <input tabindex="5" name="plusId" #plusId="ngModel" [(ngModel)]="service.formData.plusId" type="number" placeholder="PlusId" class="form-control">
           </div>
         <div class="form-group">
-            <select name="Vundet" #Vundet="ngModel" [(ngModel)]="service.formData.Vundet" type="boolean" placeholder="Vundet" class="form-control">
+            <select tabindex="7" name="vundet" #vundet="ngModel" [(ngModel)]="service.formData.vundet" type="boolean" placeholder="Vundet" class="form-control">
               <option value="true">Vundet: true</option>
               <option value="false">Vundet: false</option>
             </select>
           </div>
         <div class="form-group">
-            <input name="Spiller1" #Spiller1="ngModel" [(ngModel)]="service.formData.Spiller1" type="number" placeholder="Spiller1" class="form-control">
+            <input tabindex="9" name="spiller1" #spiller1="ngModel" [(ngModel)]="service.formData.spiller1" type="number" placeholder="Spiller1" class="form-control">
           </div>
         <div class="form-group">
-            <input name="Spiller3" #Spiller3="ngModel" [(ngModel)]="service.formData.Spiller3" type="number" placeholder="Spiller3" class="form-control">
+            <input tabindex="11" name="spiller3" #spiller3="ngModel" [(ngModel)]="service.formData.spiller3" type="number" placeholder="Spiller3" class="form-control">
           </div>
     </div>
     <div class="col-md">
         <div class="form-group">
-            <input name="RundeNr" #RundeNr="ngModel" [(ngModel)]="service.formData.RundeNr" type="number" placeholder="RundeNr" class="form-control">
+            <input tabindex="2" name="rundeNr" #rundeNr="ngModel" [(ngModel)]="service.formData.rundeNr" type="number" placeholder="RundeNr" class="form-control">
           </div>          
           <div class="form-group">
-            <input name="Melding" #Melding="ngModel" [(ngModel)]="service.formData.Melding" type="number" placeholder="Melding" class="form-control">
+            <input tabindex="4" name="melding" #melding="ngModel" [(ngModel)]="service.formData.melding" type="number" placeholder="Melding" class="form-control">
           </div>
           <div class="form-group">
-            <input name="Makker" #Makker="ngModel" [(ngModel)]="service.formData.Makker" type="number" placeholder="Makker" class="form-control">
+            <input tabindex="6" name="makker" #makker="ngModel" [(ngModel)]="service.formData.makker" type="number" placeholder="Makker" class="form-control">
           </div>          
           <div class="form-group">
-            <input name="Beloeb" #Beloeb="ngModel" [(ngModel)]="service.formData.Beloeb" type="number" placeholder="Beloeb" class="form-control">
+            <input tabindex="8" name="beloeb" #beloeb="ngModel" [(ngModel)]="service.formData.beloeb" type="number" placeholder="Beløb" class="form-control">
           </div>          
           <div class="form-group">
-            <input name="Spiller2" #Spiller2="ngModel" [(ngModel)]="service.formData.Spiller2" type="number" placeholder="Spiller2" class="form-control">
+            <input tabindex="10" name="spiller2" #spiller2="ngModel" [(ngModel)]="service.formData.spiller2" type="number" placeholder="Spiller2" class="form-control">
           </div>          
           <div class="form-group">
-            <input name="Spiller4" #Spiller4="ngModel" [(ngModel)]="service.formData.Spiller4" type="number" placeholder="Spiller4" class="form-control">
+            <input tabindex="12" name="spiller4" #spiller4="ngModel" [(ngModel)]="service.formData.spiller4" type="number" placeholder="Spiller4" class="form-control">
           </div>
     </div>
   </div>

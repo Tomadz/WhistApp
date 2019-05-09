@@ -14,5 +14,16 @@ export class RundeListComponent implements OnInit {
   ngOnInit() {
     this.service.refreshList();
   }
-
+  redigerForm(runde: Runde) {
+    this.service.formData = Object.assign({}, runde);
+  }
+  onDelete(id) {
+    if (confirm('Er du sikker på du vil slette denne runde?')) {
+      this.service.deleteRunde(id).subscribe(res => {
+        this.service.refreshList();
+      }, err => {
+        console.log(err)
+      })
+    }
+  }
 }

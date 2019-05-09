@@ -15,18 +15,19 @@
     <th>Spiller4</th>
   </tr>
   <tr *ngFor="let runde of service.list">
-    <td>{{runde.id}}</td>
-    <td>{{runde.spilId}}</td>
-    <td>{{runde.rundeNr}}</td>
-    <td>{{runde.melder}}</td>
-    <td>{{runde.melding}}</td>
-    <td>{{runde.plusId}}</td>
-    <td>{{runde.makker}}</td>
-    <td>{{runde.vundet}}</td>
-    <td>{{runde.beloeb}}</td>
-    <td>{{runde.spiller1}}</td>
-    <td>{{runde.spiller2}}</td>
-    <td>{{runde.spiller3}}</td>
-    <td>{{runde.spiller4}}</td>
+    <td (click)="redigerForm(runde)">{{runde.id}}</td>
+    <td (click)="redigerForm(runde)">{{runde.spilId}}</td>
+    <td (click)="redigerForm(runde)">{{runde.rundeNr}}</td>
+    <td (click)="redigerForm(runde)">{{runde.melder}}</td>
+    <td (click)="redigerForm(runde)">{{runde.melding}}</td>
+    <td (click)="redigerForm(runde)">{{runde.plusId}}</td>
+    <td (click)="redigerForm(runde)">{{runde.makker}}</td>
+    <td (click)="redigerForm(runde)">{{runde.vundet}}</td>
+    <td (click)="redigerForm(runde)">{{runde.beloeb}}</td>
+    <td (click)="redigerForm(runde)">{{runde.spiller1}}</td>
+    <td (click)="redigerForm(runde)">{{runde.spiller2}}</td>
+    <td (click)="redigerForm(runde)">{{runde.spiller3}}</td>
+    <td (click)="redigerForm(runde)">{{runde.spiller4}}</td>
+    <td><button class="btn btn-danger align-top" type="submit" (click)="onDelete(runde.id)">X</button></td>
   </tr>
 </table>
