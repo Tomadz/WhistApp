@@ -19,24 +19,24 @@ export class RundeComponent implements OnInit {
     if (form != null)
       form.form.reset();
     this.service.formData = {
-      id: 0,
-      spilId: null,
-      rundeNr: null,
-      melder: null,
-      melding: null,
-      plusId: null,
-      makker: null,
-      vundet: null,
-      beloeb: null,
-      spiller1: null,
-      spiller2: null,
-      spiller3: null,
-      spiller4: null
+      Id: 0,
+      SpilId: null,
+      RundeNr: null,
+      Melder: null,
+      Melding: null,
+      PlusId: null,
+      Makker: null,
+      Vundet: null,
+      Beloeb: null,
+      Spiller1: null,
+      Spiller2: null,
+      Spiller3: null,
+      Spiller4: null
     }
   }
 
   onSubmit(form: NgForm) {
-    if (this.service.formData.id == 0)
+    if (this.service.formData.Id == 0)
       this.createRecord(form);
     else
       this.updateRecord(form);
