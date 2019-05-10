@@ -6,7 +6,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class RundeService {
   formData: Runde;
-  readonly rootURL = 'https://localhost:44359/api';
+  readonly rootURL = 'http://localhost:50403/api';
   list: Runde[];
 
   constructor(private http: HttpClient) { }
@@ -15,7 +15,7 @@ export class RundeService {
     return this.http.post(this.rootURL + '/runde', this.formData);
   }
   putRunde() {
-    return this.http.put(this.rootURL + "/runde/" + this.formData.id, this.formData)
+    return this.http.put(this.rootURL + "/runde/" + this.formData.Id, this.formData)
   }
   deleteRunde(id) {
     return this.http.delete(this.rootURL + "/runde/" + id)

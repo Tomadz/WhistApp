@@ -22,7 +22,7 @@ namespace WhistApi.Models
         [Required]
         public bool Vundet { get; set; }
         [Required]
-        [Column(TypeName = "decimal")]
+        [Column(TypeName = "decimal(18, 0)")]
         public decimal Beloeb { get; set; }
         [Required]
         public int Spiller1 { get; set; }

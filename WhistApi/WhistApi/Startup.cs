@@ -27,7 +27,8 @@ namespace WhistApi
                     if (resolver!=null)
                         (resolver as DefaultContractResolver).NamingStrategy = null;
                 });
-            services.AddDbContext<RundeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            var connectionString = Configuration.GetConnectionString("WhistDbConnection");
+            services.AddDbContext<RundeContext>(options => options.UseSqlServer(connectionString));
             services.AddCors();
         }
 
@@ -38,17 +39,12 @@ namespace WhistApi
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+
             app.UseCors(options =>
             options.WithOrigins("http://localhost:4200")
             .AllowAnyMethod()
             .AllowAnyHeader());
 
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
