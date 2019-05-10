@@ -27,7 +27,7 @@ namespace WhistApi
                     if (resolver != null)
                         (resolver as DefaultContractResolver).NamingStrategy = null;
                 });
-            services.AddDbContext<RundeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WhistDbConString")));
+            services.AddDbContext<RundeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SpilMsDbConString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
