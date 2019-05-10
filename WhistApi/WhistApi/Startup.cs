@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using WhistApi.Models;
+//using WhistApi.Models;
 using Newtonsoft.Json.Serialization;
 
 namespace WhistApi
@@ -28,7 +28,7 @@ namespace WhistApi
                         (resolver as DefaultContractResolver).NamingStrategy = null;
                 });
             var connectionString = Configuration.GetConnectionString("WhistDbConnection");
-            services.AddDbContext<RundeContext>(options => options.UseSqlServer(connectionString));
+            //services.AddDbContext<RundeContext>(options => options.UseSqlServer(connectionString));
             services.AddCors();
         }
 
