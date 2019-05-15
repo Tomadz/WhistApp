@@ -10,11 +10,11 @@ using RundeService.Model.Context;
 namespace RundeService.Controllers
 {
     [Route("api/Runde")]
-    public class SpilController : ControllerBase
+    public class RundeController : ControllerBase
     {
         private readonly RundeContext _context;
 
-        public SpilController(RundeContext context)
+        public RundeController(RundeContext context)
         {
             _context = context;
         }
