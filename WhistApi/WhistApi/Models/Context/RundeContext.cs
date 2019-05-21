@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace WhistApi.Models
+namespace WhistApi.Models.Context
 {
     public class RundeContext : DbContext
     {

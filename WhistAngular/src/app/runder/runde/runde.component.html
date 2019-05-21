@@ -1,51 +1,65 @@
 <form #form="ngForm" autocomplete="on" (submit)="onSubmit(form)">
   <input type="hidden" name="Id" [value]="service.formData.Id">
+  <input type="hidden" name="SpilId" [value]="service.formData.SpilId">
   <div class="form-row">
     <div class="col-md">
         <div class="form-group">
-            <input tabindex="1" name="SpilId" #spilId="ngModel" [(ngModel)]="service.formData.SpilId" type="number" placeholder="SpilId" class="form-control">
-          </div>
+          <input name="Melder" [id]="melderValue" [placeholder]="melderNavn" disabled="disabled" class="form-control">
+        </div>
         <div class="form-group">
-            <input tabindex="3" name="Melder" #melder="ngModel" [(ngModel)]="service.formData.Melder" type="number" placeholder="Melder" class="form-control">
-          </div>
+          <select name="Melding" [(ngModel)]="service.formData.Melding" type="number" class="form-control">
+            <option value="0" disabled selected>Vælg melding</option>
+            <option value="1">7</option>
+            <option value="2">8</option>
+            <option value="3">9</option>
+            <option value="4">Sol</option>
+            <option value="5">10</option>
+            <option value="6">Ren sol</option>
+            <option value="7">11</option>
+            <option value="8">Bordlægger</option>
+            <option value="9">12</option>
+            <option value="10">Ren bordlægger</option>
+            <option value="11">13</option>
+            <option value="12">Beskidt</option>
+          </select>
+        </div>
         <div class="form-group">
-            <input tabindex="5" name="PlusId" #plusId="ngModel" [(ngModel)]="service.formData.PlusId" type="number" placeholder="PlusId" class="form-control">
-          </div>
+          <select name="PlusId" #plusId="ngModel" [(ngModel)]="service.formData.PlusId" type="number" class="form-control">
+            <option value="null" disabled selected>Vælg plus</option>
+            <option value="1">[Blank]</option>
+            <option value="2">Hårde</option>
+            <option value="3">Halve</option>
+            <option value="4">Sang</option>
+            <option value="5">VIP</option>
+            <option value="6">Gode</option>
+          </select>
+        </div>
         <div class="form-group">
-            <select tabindex="7" name="Vundet" #vundet="ngModel" [(ngModel)]="service.formData.Vundet" type="boolean" placeholder="Vundet" class="form-control">
-              <option value="true">Vundet: true</option>
-              <option value="false">Vundet: false</option>
-            </select>
-          </div>
+          <select multiple name="gaaMed" [ngModel]="service.gaaMedId" type="number" class="form-control">
+            <option value="null" disabled selected>Vælg spillere som går med</option>
+            <option *ngFor="let navn of service.filterSpillere" [value]="navn.Id">{{navn.Fornavn}}</option>
+          </select>
+        </div>
         <div class="form-group">
-            <input tabindex="9" name="Spiller1" #spiller1="ngModel" [(ngModel)]="service.formData.Spiller1" type="number" placeholder="Spiller1" class="form-control">
-          </div>
+          <select name="Vundet" #vundet="ngModel" [(ngModel)]="service.formData.Vundet" type="boolean" placeholder="Vundet" class="form-control">
+            <option value="null" disabled selected>Resultat</option>
+            <option value="true">Vundet</option>
+            <option value="false">Tabt</option>
+          </select>
+        </div>    
         <div class="form-group">
-            <input tabindex="11" name="Spiller3" #spiller3="ngModel" [(ngModel)]="service.formData.Spiller3" type="number" placeholder="Spiller3" class="form-control">
-          </div>
-    </div>
-    <div class="col-md">
+          <select name="Makker" #makker="ngModel" [(ngModel)]="service.formData.Makker" type="number" placeholder="Makker" class="form-control">
+            <option value="null" disabled selected>Vælg makker</option>
+            <option value="0">Forever alone :(</option>
+            <option *ngFor="let navn of service.filterSpillere" [value]="navn.Id">{{navn.Fornavn}}</option>
+          </select> 
+        </div>
         <div class="form-group">
-            <input tabindex="2" name="RundeNr" #rundeNr="ngModel" [(ngModel)]="service.formData.RundeNr" type="number" placeholder="RundeNr" class="form-control">
-          </div>          
-          <div class="form-group">
-            <input tabindex="4" name="Melding" #melding="ngModel" [(ngModel)]="service.formData.Melding" type="number" placeholder="Melding" class="form-control">
-          </div>
-          <div class="form-group">
-            <input tabindex="6" name="Makker" #makker="ngModel" [(ngModel)]="service.formData.Makker" type="number" placeholder="Makker" class="form-control">
-          </div>          
-          <div class="form-group">
-            <input tabindex="8" name="Beloeb" #beloeb="ngModel" [(ngModel)]="service.formData.Beloeb" type="number" placeholder="Beløb" class="form-control">
-          </div>          
-          <div class="form-group">
-            <input tabindex="10" name="Spiller2" #spiller2="ngModel" [(ngModel)]="service.formData.Spiller2" type="number" placeholder="Spiller2" class="form-control">
-          </div>          
-          <div class="form-group">
-            <input tabindex="12" name="Spiller4" #spiller4="ngModel" [(ngModel)]="service.formData.Spiller4" type="number" placeholder="Spiller4" class="form-control">
-          </div>
+          <input class="form-control" type="number" name="AntalStik" placeholder="Antal stik">
+        </div>
     </div>
   </div>
   <div class="form-group">
-    <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Indsend</button>
   </div>
 </form>

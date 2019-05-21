@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WhistApi.Models;
+using WhistApi.Models.Context;
 
 namespace WhistApi.Controllers
 {
