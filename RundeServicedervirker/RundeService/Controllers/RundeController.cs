@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace RundeService.Controllers
 {
     [Route("api/Runde")]
+    [ApiController]
     public class RundeController : ControllerBase
     {
         private readonly RundeContext _context;
@@ -51,9 +52,9 @@ namespace RundeService.Controllers
             //publish runden
             Publish.Runde(item);
             //tilføj item til context.runder
-            _context.Runder.Add(item);
+          //  _context.Runder.Add(item);
             //vent på det er gemt
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetRunde), new { id = item.Id }, item);
         }
 
