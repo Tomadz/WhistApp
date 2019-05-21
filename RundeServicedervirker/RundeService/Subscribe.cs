@@ -1,4 +1,7 @@
-﻿using RabbitMQ.Client;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RundeService.Model;
 using RundeService.Model.Context;
@@ -6,26 +9,33 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RundeService
 {
-    public class Subscribe
+    public class Subscribe: BackgroundService
     {
 
-        private readonly RundeContext _context;
+        private readonly IServiceScopeFactory scopeFactory;
 
-        public Subscribe(RundeContext context)
+        public Subscribe(IServiceScopeFactory serviceScopeFactory)
         {
-            _context = context;
+            scopeFactory = serviceScopeFactory;
+        }
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
                 SubscribeDelete(channel);
                 SubscribeRunde(channel);
+                await Task.Delay(1);
+                while (true) { }
             }
-        }
+        }        
 
         void SubscribeRunde(IModel channel)
         {
@@ -44,11 +54,15 @@ namespace RundeService
                 var message = Encoding.UTF8.GetString(body);
 
                 Runde item = Newtonsoft.Json.JsonConvert.DeserializeObject<Runde>(message);
-                
-                //tilføj item til context.runder
-                _context.Runder.Add(item);
-                //vent på det er gemt
-                _context.SaveChangesAsync();
+                using (var scope = scopeFactory.CreateScope())
+                {
+                    var _context = scope.ServiceProvider.GetRequiredService<RundeContext>();
+
+                    //tilføj item til context.runder
+                    _context.Runder.Add(item);
+                    //vent på det er gemt
+                    _context.SaveChangesAsync();
+                }
             };
             channel.BasicConsume(queue: queueName,
                                  autoAck: true,
@@ -74,8 +88,6 @@ namespace RundeService
                                  autoAck: true,
                                  consumer: consumer);*/
 
-            Console.WriteLine(" Opret subscribe kør ");
-            Console.ReadLine();
 
 
         }
@@ -95,8 +107,14 @@ namespace RundeService
                 var body = ea.Body;
                 var id = Encoding.UTF8.GetString(body);
 
-                var runde = _context.Runder.Find(id);
-                _context.Runder.Remove(runde);
+                using (var scope = scopeFactory.CreateScope())
+                {
+                    var _context = scope.ServiceProvider.GetRequiredService<RundeContext>();
+
+                    var runde = _context.Runder.Find(id);
+                    _context.Runder.Remove(runde);
+                }
+                
             };
             channel.BasicConsume(queue: queueName,
                                  autoAck: true,
@@ -122,10 +140,9 @@ namespace RundeService
                                  autoAck: true,
                                  consumer: consumer);*/
 
-            Console.WriteLine(" Delete subscribe kør ");
-
 
 
         }
+
     }
 }
