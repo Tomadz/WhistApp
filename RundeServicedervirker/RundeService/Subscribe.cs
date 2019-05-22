@@ -115,6 +115,7 @@ namespace RundeService
 
                     var runde = _context.Runder.Where(r => r.SpilId==item.SpilId && r.RundeNr == item.RundeNr).FirstOrDefault();
                     _context.Runder.Remove(runde);
+                    _context.SaveChangesAsync();
                 }
                 
             };

@@ -74,7 +74,7 @@ namespace RundeService.Controllers
         }
 
         // DELETE: api/Runde
-        [HttpDelete("{id}/{paramTo}")]
+        [HttpDelete("{spilid}/{rundenr}")]
         public async Task<IActionResult> DeleteTodoItem(int spilid, int rundenr)
         {
             /*var runde = await _context.Runder.FindAsync(spilid,rundenr);
