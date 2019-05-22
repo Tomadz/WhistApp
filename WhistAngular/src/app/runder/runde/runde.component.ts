@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RundeService } from 'src/app/shared/runde.service';
 import { NgForm } from '@angular/forms';
-import { Spillere } from 'src/app/shared/spillere.model';
-import { formatNumber } from '@angular/common';
+import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
 @Component({
   selector: 'app-runde',
@@ -12,13 +11,17 @@ import { formatNumber } from '@angular/common';
 export class RundeComponent implements OnInit {
 
   constructor(private service: RundeService) { }
-  spillerlistest = this.service.spillereList;
   melderNavn: string;
   melderValue: number;
+  vundettest: boolean;
+  AntailVIPId: number;
   ngOnInit() {
-    this.service.setMelder();
-    this.melderNavn = JSON.parse(localStorage.getItem('melderNavn'));
-    this.melderValue = Number.parseInt(JSON.parse(localStorage.getItem('melderValue')), 10);
+    if (JSON.parse(localStorage.getItem('melderNavn')) == null) {
+      this.service.setMelder();
+      this.melderNavn = JSON.parse(localStorage.getItem('melderNavn'));
+      this.melderValue = Number.parseInt(JSON.parse(localStorage.getItem('melderValue')), 10);
+    }
+    this.AntailVIPId = null;
     this.resetForm();
   }
 
@@ -44,17 +47,35 @@ export class RundeComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.gaaMedCheck(form);
+    /*if (form.form.controls.PlusId.value[0] > 1) {
+      this.service.gaaMedId = form.form.controls.PlusId.value[0];
+    }*/
     // this.createRecord(form);
+    this.service.setMelder();
+    this.melderNavn = JSON.parse(localStorage.getItem('melderNavn'));
+    this.melderValue = Number.parseInt(JSON.parse(localStorage.getItem('melderValue')), 10);
+    // console.log(this.service.formData);
+    this.regnBeloeb(form);
   }
 
-  gaaMedCheck(form: NgForm) {
-    if (form.form.controls.GaaMed.value[0] != null) {
-      this.service.gaaMedId = form.form.controls.gaaMed.value[0];
-    }
+  regnBeloeb(form: NgForm) {
+    /*const base;
+    const multiplier;
+    const melding;
+    const basevip;
+    const antalvip = Number.parseInt(form.form.controls.AntalVIP.value, 10);;
+    const antalstik;
+    const melding;
+    const plus;
+    let beloeb: number;
+    const datafromForm = this.service.formData;
+    if (datafromForm.Vundet) {
+      beloeb = (base * Math.pow(multiplier, (melding - 6)) + basevip * antalvip) * (antalstik - melding + 1) * (plus + 1);
+    }*/
   }
 
-  createRecord(form: NgForm) {
+
+  createRecord() {
 
     /*this.service.postRunde().subscribe(res => {
       this.resetForm(form);

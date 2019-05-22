@@ -4,10 +4,13 @@
   <div class="form-row">
     <div class="col-md">
         <div class="form-group">
-          <input name="Melder" [id]="melderValue" [placeholder]="melderNavn" disabled="disabled" class="form-control">
+          <select name="Melder" #melder="ngModel" [(ngModel)]="service.formData.Melder" class="form-control">
+            <option value="null" disabled selected>Vælg melder</option>
+            <option *ngFor="let navn of service.spillereList" [value]="navn.Id">{{navn.Fornavn}}</option>
+          </select>
         </div>
         <div class="form-group">
-          <select name="Melding" [(ngModel)]="service.formData.Melding" type="number" class="form-control">
+          <select name="Melding" #melding [(ngModel)]="service.formData.Melding" type="number" class="form-control">
             <option value="0" disabled selected>Vælg melding</option>
             <option value="1">7</option>
             <option value="2">8</option>
@@ -26,22 +29,29 @@
         <div class="form-group">
           <select name="PlusId" #plusId="ngModel" [(ngModel)]="service.formData.PlusId" type="number" class="form-control">
             <option value="null" disabled selected>Vælg plus</option>
-            <option value="1">[Blank]</option>
-            <option value="2">Hårde</option>
-            <option value="3">Halve</option>
-            <option value="4">Sang</option>
-            <option value="5">VIP</option>
-            <option value="6">Gode</option>
+            <option value="1">Hårde</option>
+            <option value="2">Halve</option>
+            <option value="3">Sang</option>
+            <option value="4">VIP</option>
+            <option value="5">Gode</option>
           </select>
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="plusId.value == 4">
+          <select name="AntalVIP" #AntailVIPId="ngModel" [ngModel]="" [id]="AntailVIPId" class="form-control">
+            <option value="0" disabled selected>Vælg antal VIP</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+        <div class="form-group" *ngIf="melding.value == 4 || melding.value == 6 || melding.value == 8 || melding.value == 10 || melding.value == 12">
           <select multiple name="gaaMed" [ngModel]="service.gaaMedId" type="number" class="form-control">
             <option value="null" disabled selected>Vælg spillere som går med</option>
-            <option *ngFor="let navn of service.filterSpillere" [value]="navn.Id">{{navn.Fornavn}}</option>
+            <option *ngFor="let navn of service.filterSpillere(melder.value)" [value]="navn.Id">{{navn.Fornavn}}</option>
           </select>
         </div>
         <div class="form-group">
-          <select name="Vundet" #vundet="ngModel" [(ngModel)]="service.formData.Vundet" type="boolean" placeholder="Vundet" class="form-control">
+          <select name="Vundet" #vundettest="ngModel" [(ngModel)]="service.formData.Vundet" type="boolean" class="form-control">
             <option value="null" disabled selected>Resultat</option>
             <option value="true">Vundet</option>
             <option value="false">Tabt</option>
@@ -50,8 +60,7 @@
         <div class="form-group">
           <select name="Makker" #makker="ngModel" [(ngModel)]="service.formData.Makker" type="number" placeholder="Makker" class="form-control">
             <option value="null" disabled selected>Vælg makker</option>
-            <option value="0">Forever alone :(</option>
-            <option *ngFor="let navn of service.filterSpillere" [value]="navn.Id">{{navn.Fornavn}}</option>
+            <option *ngFor="let navn of service.spillereList" [value]="navn.Id">{{navn.Fornavn}}</option>
           </select> 
         </div>
         <div class="form-group">

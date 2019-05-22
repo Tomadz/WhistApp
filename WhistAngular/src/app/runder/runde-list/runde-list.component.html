@@ -5,16 +5,16 @@
     <th>Melding</th>
     <th>Plus</th>
     <th>Makker</th>
-    <th>Vundet</th>
+    <th>Resultat</th>
     <th>Beløb</th>
   </tr>
-  <tr *ngFor="let runde of service.list">
+  <tr *ngFor="let runde of service.rundeList">
     <td>{{runde.RundeNr}}</td>
-    <td>{{runde.Melder}}</td>
-    <td>{{runde.Melding}}</td>
-    <td>{{runde.PlusId}}</td>
-    <td>{{runde.Makker}}</td>
-    <td>{{runde.Vundet}}</td>
+    <td>{{getNavnFromId(runde.Melder)}}</td>
+    <td>{{getMelding(runde.Melding)}}</td>
+    <td>{{getPlus(runde.PlusId)}}</td>
+    <td>{{getNavnFromId(runde.Makker)}}</td>
+    <td>{{getVundet(runde.Vundet)}}</td>
     <td>{{runde.Beloeb}}</td>
     <td><button class="btn btn-danger align-top" type="submit" (click)="onDelete(runde.Id)">X</button></td>
   </tr>
