@@ -36,7 +36,7 @@ namespace RundeService
 
         }
 
-        public static void Delete(long id)
+        public static void Delete(Runde runde)
         {
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var connection = factory.CreateConnection())
@@ -44,8 +44,17 @@ namespace RundeService
             {
                 channel.ExchangeDeclare(exchange: "Delete", type: "fanout");
 
+
+                //serializer Runde til json og gør det til string til sidst
+                DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Runde));
+                MemoryStream msObj = new MemoryStream();
+                js.WriteObject(msObj, runde);
+                msObj.Position = 0;
+                StreamReader sr = new StreamReader(msObj);
+                string json = sr.ReadToEnd();                // "{\"Description\":\"Share Knowledge\",\"Name\":\"C-sharpcorner\"}"  
+
                 //gør string til byte så det kan sendes
-                var body = Encoding.UTF8.GetBytes(id.ToString());
+                var body = Encoding.UTF8.GetBytes(json);
 
                 //publish det op til Runde køen
                 channel.BasicPublish(exchange: "Delete",

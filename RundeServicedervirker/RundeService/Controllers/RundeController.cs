@@ -74,19 +74,23 @@ namespace RundeService.Controllers
         }
 
         // DELETE: api/Runde
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTodoItem(long id)
+        [HttpDelete("{id}/{paramTo}")]
+        public async Task<IActionResult> DeleteTodoItem(int spilid, int rundenr)
         {
-            var runde = await _context.Runder.FindAsync(id);
+            /*var runde = await _context.Runder.FindAsync(spilid,rundenr);
 
-            if (runde == null)
-            {
-                return NotFound();
-            }
+             if (runde == null)
+             {
+                 return NotFound();
+             }
 
-            _context.Runder.Remove(runde);
-            await _context.SaveChangesAsync();
-            Publish.Delete(id);
+             _context.Runder.Remove(runde);
+             await _context.SaveChangesAsync();*/
+            Runde runde = new Runde();
+            runde.SpilId = spilid;
+            runde.RundeNr = rundenr;            
+
+            Publish.Delete(runde);
             return NoContent();
         }
 

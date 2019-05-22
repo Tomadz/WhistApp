@@ -105,13 +105,15 @@ namespace RundeService
             consumer.Received += (model, ea) =>
             {
                 var body = ea.Body;
-                var id = Encoding.UTF8.GetString(body);
+                 var message = Encoding.UTF8.GetString(body);
+                Runde item = Newtonsoft.Json.JsonConvert.DeserializeObject<Runde>(message);
+
 
                 using (var scope = scopeFactory.CreateScope())
                 {
                     var _context = scope.ServiceProvider.GetRequiredService<RundeContext>();
 
-                    var runde = _context.Runder.Find(id);
+                    var runde = _context.Runder.Where(r => r.SpilId==item.SpilId && r.RundeNr == item.RundeNr).FirstOrDefault();
                     _context.Runder.Remove(runde);
                 }
                 

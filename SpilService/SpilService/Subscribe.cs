@@ -96,7 +96,8 @@ namespace SpilService
             {
                 var body = ea.Body;
                 var id = Encoding.UTF8.GetString(body);
-
+                Runde item = Newtonsoft.Json.JsonConvert.DeserializeObject<Runde>(message);
+                queryInsert.RunderDelete(item);
 
             };
             channel.BasicConsume(queue: queueName,

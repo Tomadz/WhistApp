@@ -28,15 +28,15 @@ namespace SpilService
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-        public void RunderDelete(int id)
-        {/*
+        public void RunderDelete(Runde item)
+        {
             conn.Open();
             SqlCommand cmd = new SqlCommand();
 
-            cmd = new SqlCommand("delete Runder where id", conn);
+            cmd = new SqlCommand("delete Runder where SpilId = "+item.SpilId+" and RundeNr = "+item.RundeNr+" ", conn);
 
             cmd.ExecuteNonQuery();
-            conn.Close();*/
+            conn.Close();
         }
 
     }
