@@ -16,9 +16,18 @@ namespace SpilService.Controllers
     {
         // GET: api/Regelsæt
         [HttpGet]
-        public IEnumerable<string> Get()
+        public string Get()
         {
-            return new string[] { "value1", "value2" };
+            SqlQuery sqlQuery = new SqlQuery();
+            List<Regelsæt> regelsæts = sqlQuery.HentAlleRegler();
+            //serializer Runde til json og gør det til string til sidst
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(List<Regelsæt>));
+            MemoryStream msObj = new MemoryStream();
+            js.WriteObject(msObj, regelsæts);
+            msObj.Position = 0;
+            StreamReader sr = new StreamReader(msObj);
+            string json = sr.ReadToEnd();
+            return json;
         }
 
         // GET api/<controller>/5

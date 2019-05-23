@@ -44,6 +44,31 @@ namespace SpilService
 
         }
 
+        internal List<Regelsæt> HentAlleRegler()
+        {
+            List<Regelsæt> regelsæts = new List<Regelsæt>();
+            conn.Open();
+            string selectSQL = "select Id from Regelsæt";
+            SqlCommand com = new SqlCommand(selectSQL, conn);
+            SqlDataReader myReader = com.ExecuteReader();// NB new method used here
+            try
+            {   // loop through the ResultSet, one tuple at the time:
+                while (myReader.Read()) // first advance the curser to the next tuple.
+                {
+                    regelsæts.Add(HentSpecifikkeRegler(myReader.GetInt32(0)));
+                }
+            }
+            catch { }
+            finally
+            {
+                myReader.Close(); // close nicely the ResultSet
+                conn.Close();
+            }
+
+
+            return regelsæts;
+        }
+
         public List<Ven> HentVennerSpecifikSpil(int id)
         {
             conn.Open();
