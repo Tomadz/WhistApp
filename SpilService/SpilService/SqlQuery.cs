@@ -72,10 +72,8 @@ namespace SpilService
 
         public List<Ven> HentVennerSpecifikSpil(int id)
         {
-            if (conn.State == ConnectionState.Closed)
-            {
                 conn.Open();
-            }
+            
             List<Ven> venner = new List<Ven>();
             string selectSQL = "Select Id, Fornavn, Efternavn from Bruger " +
                                 "where Id in(Select BrugerId from SpilBruger where SpilId ='" + id + "')";
@@ -104,7 +102,11 @@ namespace SpilService
 
         public Regelsæt HentSpecifikkeRegler(int id)
         {
-            conn.Open();
+
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+            }
             Regelsæt regelsæt = new Regelsæt();
 
             string selectSQL = "select Base,MultiplyTab,BaseVip from Regelsæt where Id = "+id+" ";

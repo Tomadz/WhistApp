@@ -23,7 +23,7 @@ namespace SpilService
             string connstring = "User id =WhistDbAdgang; " + // \\ to get \
                     "Password=Whist; " +
                     "Database=WhistDb;" +
-                    "Server=LAPTOP-Q4Q4J29C;" + // not localhost
+                    "Server=LAPTOP-4TKUM7H1;" + // not localhost
                     "Connect Timeout=60";
             conn = new SqlConnection(connstring);
 
