@@ -27,9 +27,9 @@ namespace SpilService
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                SqlQueryInsert queryInsert = new SqlQueryInsert();   
-                SubscribeDelete(channel,queryInsert);
-                SubscribeRunde(channel,queryInsert);
+                SqlQueryInsert queryInsert = new SqlQueryInsert();
+                SubscribeDelete(channel, queryInsert);
+                SubscribeRunde(channel, queryInsert);
                 await Task.Delay(1);
                 while (true) { }
             }
@@ -52,7 +52,7 @@ namespace SpilService
                 var message = Encoding.UTF8.GetString(body);
 
                 Runde item = Newtonsoft.Json.JsonConvert.DeserializeObject<Runde>(message);
-                queryInsert.RunderInsert(item);    
+                queryInsert.RunderInsert(item);
             };
             channel.BasicConsume(queue: queueName,
                                  autoAck: true,
@@ -95,7 +95,7 @@ namespace SpilService
             consumer.Received += (model, ea) =>
             {
                 var body = ea.Body;
-                var id = Encoding.UTF8.GetString(body);
+                var message = Encoding.UTF8.GetString(body);
                 Runde item = Newtonsoft.Json.JsonConvert.DeserializeObject<Runde>(message);
                 queryInsert.RunderDelete(item);
 
@@ -125,4 +125,5 @@ namespace SpilService
                                  consumer: consumer);*/
 
         }
-        }
+    }
+}
