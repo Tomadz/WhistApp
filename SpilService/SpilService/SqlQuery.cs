@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -71,7 +72,10 @@ namespace SpilService
 
         public List<Ven> HentVennerSpecifikSpil(int id)
         {
-            conn.Open();
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+            }
             List<Ven> venner = new List<Ven>();
             string selectSQL = "Select Id, Fornavn, Efternavn from Bruger " +
                                 "where Id in(Select BrugerId from SpilBruger where SpilId ='" + id + "')";
