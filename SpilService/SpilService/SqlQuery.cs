@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -44,9 +45,38 @@ namespace SpilService
 
         }
 
+        internal List<Regelsæt> HentAlleRegler()
+        {
+            List<Regelsæt> regelsæts = new List<Regelsæt>();
+            List<int> ids = new List<int>();
+            conn.Open();
+            string selectSQL = "select Id from Regelsæt";
+            SqlCommand com = new SqlCommand(selectSQL, conn);
+            SqlDataReader myReader = com.ExecuteReader();// NB new method used here
+            try
+            {   // loop through the ResultSet, one tuple at the time:
+                while (myReader.Read()) // first advance the curser to the next tuple.
+                {
+                   ids.Add(myReader.GetInt32(0));
+                }
+            }
+            catch { }
+            finally
+            {
+                myReader.Close(); // close nicely the ResultSet
+                conn.Close();
+            }
+            foreach(int n in ids)
+            {
+               regelsæts.Add( HentSpecifikkeRegler(n));
+            }
+            return regelsæts;
+        }
+
         public List<Ven> HentVennerSpecifikSpil(int id)
         {
-            conn.Open();
+                conn.Open();
+            
             List<Ven> venner = new List<Ven>();
             string selectSQL = "Select Id, Fornavn, Efternavn from Bruger " +
                                 "where Id in(Select BrugerId from SpilBruger where SpilId ='" + id + "')";
@@ -75,7 +105,11 @@ namespace SpilService
 
         public Regelsæt HentSpecifikkeRegler(int id)
         {
-            conn.Open();
+
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+            }
             Regelsæt regelsæt = new Regelsæt();
 
             string selectSQL = "select Base,MultiplyTab,BaseVip from Regelsæt where Id = "+id+" ";
@@ -85,9 +119,9 @@ namespace SpilService
             {   // loop through the ResultSet, one tuple at the time:
                 while (myReader.Read()) // first advance the curser to the next tuple.
                 {
-                    regelsæt.Base = myReader.GetInt32(0);
-                    regelsæt.MultiplyTab = myReader.GetDouble(1);
-                    regelsæt.BaseVip=myReader.GetDouble(2);
+                    regelsæt.Base = Convert.ToDouble(myReader.GetDecimal(0));
+                    regelsæt.MultiplyTab = Convert.ToDouble( myReader.GetDecimal(1));
+                    regelsæt.BaseVip= Convert.ToDouble(myReader.GetDecimal(1));
                 }
             }
             catch { }
