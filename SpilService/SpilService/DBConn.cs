@@ -23,7 +23,8 @@ namespace SpilService
             string connstring = "User id =WhistDbAdgang; " + // \\ to get \
                     "Password=Whist; " +
                     "Database=WhistDb;" +
-                    "Server=LAPTOP-4TKUM7H1;" +
+                    "Server=LAPTOP-Q4Q4J29C;" + // not localhost
+                    //"Server=LAPTOP-4TKUM7H1;" +
                     //"Server=LAPTOP-4TKUM7H1;" +
                     //"Server=LAPTOP-4TKUM7H1;" +
                     //"Server=LAPTOP-4TKUM7H1;" + // not localhost
