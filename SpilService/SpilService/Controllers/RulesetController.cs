@@ -12,7 +12,7 @@ namespace SpilService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RegelsætController : ControllerBase
+    public class RulesetController : ControllerBase
     {
         // GET: api/Regelsæt
         [HttpGet]
