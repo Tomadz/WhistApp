@@ -12,18 +12,18 @@
         <div class="form-group">
           <select name="Melding" #melding [(ngModel)]="service.formData.Melding" type="number" class="form-control">
             <option value="0" disabled selected>Vælg melding</option>
-            <option value="1">7</option>
-            <option value="2">8</option>
-            <option value="3">9</option>
-            <option value="4">Sol</option>
-            <option value="5">10</option>
-            <option value="6">Ren sol</option>
-            <option value="7">11</option>
-            <option value="8">Bordlægger</option>
-            <option value="9">12</option>
-            <option value="10">Ren bordlægger</option>
-            <option value="11">13</option>
-            <option value="12">Beskidt</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="1">Sol</option>
+            <option value="10">10</option>
+            <option value="2">Ren sol</option>
+            <option value="11">11</option>
+            <option value="3">Bordlægger</option>
+            <option value="12">12</option>
+            <option value="4">Ren bordlægger</option>
+            <option value="13">13</option>
+            <option value="5">Beskidt</option>
           </select>
         </div>
         <div class="form-group">
@@ -37,7 +37,7 @@
           </select>
         </div>
         <div class="form-group" *ngIf="plusId.value == 4">
-          <select name="AntalVIP" #AntailVIPId="ngModel" [ngModel]="" [id]="AntailVIPId" class="form-control">
+          <select name="AntalVIP" #AntailVIPId="ngModel" [(ngModel)]="antalVip" [id]="AntailVIPId" class="form-control">
             <option value="0" disabled selected>Vælg antal VIP</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -64,7 +64,7 @@
           </select> 
         </div>
         <div class="form-group">
-          <input class="form-control" type="number" name="AntalStik" placeholder="Antal stik">
+          <input class="form-control" type="number" name="AntalStik" #antalStik="ngModel" [(ngModel)]="AntalStik" placeholder="Antal stik">
         </div>
     </div>
   </div>
