@@ -38,7 +38,7 @@ export class RundeListComponent implements OnInit {
 
   getPlus(id: string) {
     if (id === null) {
-      return '[Blank]';
+      return '-';
     } else {
       const flitredePlus = this.service.plus.filter(filter => filter.Id === Number.parseInt(id, 10));
       return flitredePlus[0].PlusNavn;
