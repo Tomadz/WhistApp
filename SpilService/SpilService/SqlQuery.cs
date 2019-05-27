@@ -45,6 +45,29 @@ namespace SpilService
 
         }
 
+        internal List<Plus> HentAllePlusser()
+        {
+            List<Plus> Plusser = new List<Plus>();
+            conn.Open();
+            string selectSQL = "select * from Plus";
+            SqlCommand com = new SqlCommand(selectSQL, conn);
+            SqlDataReader myReader = com.ExecuteReader();// NB new method used here
+            try
+            {   // loop through the ResultSet, one tuple at the time:
+                while (myReader.Read()) // first advance the curser to the next tuple.
+                {
+                    Plusser.Add(new Plus { Id = myReader.GetInt32(0), Navn = myReader.GetString(1) });
+                }
+            }
+            catch { }
+            finally
+            {
+                myReader.Close(); // close nicely the ResultSet
+                conn.Close();
+            }
+            return Plusser;
+        }
+
         internal List<Regelsæt> HentAlleRegler()
         {
             List<Regelsæt> regelsæts = new List<Regelsæt>();

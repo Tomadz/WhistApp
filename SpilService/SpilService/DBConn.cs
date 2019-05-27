@@ -25,7 +25,7 @@ namespace SpilService
                     "Database=WhistDb;" +
                     //"Server=LAPTOP-Q4Q4J29C;" + // not localhost
                      "Server=LAPTOP-4TKUM7H1;" +
-                    "Server=LAPTOP-OBRE2MJE;" + // not localhost
+                    //"Server=LAPTOP-OBRE2MJE;" + // not localhost
                     //"Server=LAPTOP-Q4Q4J29C;" + // not localhost
                     //"Server=DESKTOP-7IFDN7G;" +
                     //"Server=LAPTOP-4TKUM7H1;" +
