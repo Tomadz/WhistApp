@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RundeService.Model.Context;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 
 namespace RundeService
 {
@@ -28,7 +29,11 @@ namespace RundeService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(options => {
+                var resolver = options.SerializerSettings.ContractResolver;
+                if (resolver != null)
+                    (resolver as DefaultContractResolver).NamingStrategy = null;
+            });
             services.AddDbContext<RundeContext>(opt => opt.UseInMemoryDatabase("Runde"));
             services.AddSingleton<Subscribe>();
             services.AddSingleton<IHostedService, Subscribe>();
@@ -46,6 +51,11 @@ namespace RundeService
             {
                 app.UseHsts();
             }
+
+            app.UseCors(options =>
+                options.WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseHttpsRedirection();
             app.UseMvc();

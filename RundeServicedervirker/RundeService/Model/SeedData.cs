@@ -37,7 +37,7 @@ namespace RundeService.Models
                         PlusId = ru.PlusId,
                         Makker = ru.Makker,
                         Vundet = ru.Vundet,
-                        Beløb = ru.Beløb,
+                        Beloeb = ru.Beloeb,
                         Spiller1 = ru.Spiller1,
                         Spiller2 = ru.Spiller2,
                         Spiller3 = ru.Spiller3,
@@ -70,10 +70,20 @@ namespace RundeService.Models
                     r.RundeNr = myReader.GetInt32(2);
                     r.Melder = myReader.GetInt32(3);
                     r.Melding = myReader.GetInt32(4);
-                    r.PlusId = myReader.GetInt32(5);
-                    r.Makker = myReader.GetInt32(6);
+                    try
+                    {
+                        r.PlusId = myReader.GetInt32(5);
+                    }
+                    catch (Exception)
+                    {}
+                    try
+                    {
+                        r.Makker = myReader.GetInt32(6);
+                    }
+                    catch (Exception)
+                    {}
                     r.Vundet = myReader.GetBoolean(7);
-                    r.Beløb = Convert.ToDouble(myReader.GetDecimal(8));
+                    r.Beloeb = Convert.ToDouble(myReader.GetDecimal(8));
                     r.Spiller1 = myReader.GetInt32(9);
                     r.Spiller2 = myReader.GetInt32(10);
                     r.Spiller3 = myReader.GetInt32(11);
