@@ -43,7 +43,7 @@ namespace SpilService.Controllers
               js.WriteObject(msObj, regelsæt);
               msObj.Position = 0;
               StreamReader sr = new StreamReader(msObj);
-              string json = sr.ReadToEnd();
+              string json = sr.ReadToEnd(); 
               return json;*/
             return regelsæt;
         }

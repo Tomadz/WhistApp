@@ -33,9 +33,9 @@ namespace RundeService.Controllers
 
         // GET: api/Runde/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Runde>> GetRunde(long id)
+        public async Task<ActionResult<List<Runde>>> GetRunde(long id)
         {
-            var runde = await _context.Runder.FindAsync(id);
+            var runde = await _context.Runder.Where(r => r.SpilId == id).ToListAsync();
 
             if (runde == null)
             {
