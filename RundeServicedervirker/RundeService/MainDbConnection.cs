@@ -23,10 +23,9 @@ namespace RundeService
             string connstring = "User id =WhistDbAdgang; " + // \\ to get \
                     "Password=Whist; " +
                     "Database=WhistDb;" +
-                    "Server=LAPTOP-Q4Q4J29C;" + // not localhost
+                    "Server=LAPTOP-OBRE2MJE;" + // not localhost
                     "Connect Timeout=15";
             conn = new SqlConnection(connstring);
-
         }
     }
 }
