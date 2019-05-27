@@ -119,9 +119,10 @@ namespace SpilService
             {   // loop through the ResultSet, one tuple at the time:
                 while (myReader.Read()) // first advance the curser to the next tuple.
                 {
+                    regelsæt.Id = id;
                     regelsæt.Base = Convert.ToDouble(myReader.GetDecimal(0));
                     regelsæt.MultiplyTab = Convert.ToDouble( myReader.GetDecimal(1));
-                    regelsæt.BaseVip= Convert.ToDouble(myReader.GetDecimal(1));
+                    regelsæt.BaseVip= Convert.ToDouble(myReader.GetDecimal(2));
                 }
             }
             catch { }
