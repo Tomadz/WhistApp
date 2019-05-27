@@ -24,19 +24,20 @@ namespace SpilService.Controllers
         
         // GET api/<controller>/5
          [HttpGet("{id}")]
-         public string Get(int id)
+         public List<Ven> Get(int id)
          {
 
             SqlQuery sqlQuery = new SqlQuery();
             List<Ven> venneliste = sqlQuery.HentVenner(id);
-            //serializer Runde til json og gør det til string til sidst
-            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(List<Ven>));
-            MemoryStream msObj = new MemoryStream();
-            js.WriteObject(msObj, venneliste);
-            msObj.Position = 0;
-            StreamReader sr = new StreamReader(msObj);
-            string json = sr.ReadToEnd();
-            return json;
+            /* //serializer Runde til json og gør det til string til sidst
+             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(List<Ven>));
+             MemoryStream msObj = new MemoryStream();
+             js.WriteObject(msObj, venneliste);
+             msObj.Position = 0;
+             StreamReader sr = new StreamReader(msObj);
+             string json = sr.ReadToEnd();
+             return json;*/
+            return venneliste;
          }
         // POST api/<controller>
         [HttpPost]

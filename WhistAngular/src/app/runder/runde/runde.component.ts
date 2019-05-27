@@ -59,19 +59,20 @@ export class RundeComponent implements OnInit {
   }
 
   regnBeloeb(form: NgForm) {
-    /*const base;
-    const multiplier;
-    const melding;
-    const basevip;
-    const antalvip = Number.parseInt(form.form.controls.AntalVIP.value, 10);;
-    const antalstik;
-    const melding;
-    const plus;
-    let beloeb: number;
     const datafromForm = this.service.formData;
+    const base = 0.10;
+    const multiplier = 2;
+    const melding = Number.parseInt(datafromForm.Melding.toString(), 10);
+    const basevip = 2;
+    const antalvip = form.form.controls.AntalVIP !== undefined ? Number.parseInt(form.form.controls.AntalVIP.value, 10) : 0;
+    const antalstik = Number.parseInt(form.form.controls.AntalStik.value, 10);
+    const plus = datafromForm.PlusId != null ? 1 : 0;
+    let beloeb = (base * Math.pow(multiplier, (melding - 6)) + basevip * antalvip);
     if (datafromForm.Vundet) {
-      beloeb = (base * Math.pow(multiplier, (melding - 6)) + basevip * antalvip) * (antalstik - melding + 1) * (plus + 1);
-    }*/
+      beloeb = beloeb * (antalstik - melding + 1) * (plus + 1);
+    } else {
+      beloeb = beloeb * (melding - antalstik) * (plus + 1);
+    }
   }
 
 

@@ -24,6 +24,11 @@ namespace SpilService
                     "Password=Whist; " +
                     "Database=WhistDb;" +
                     "Server=LAPTOP-OBRE2MJE;" + // not localhost
+                    //"Server=LAPTOP-Q4Q4J29C;" + // not localhost
+                    //"Server=DESKTOP-7IFDN7G;" +
+                    //"Server=LAPTOP-4TKUM7H1;" +
+                    //"Server=LAPTOP-4TKUM7H1;" +
+                    //"Server=LAPTOP-4TKUM7H1;" + // not localhost
                     "Connect Timeout=60";
             conn = new SqlConnection(connstring);
 
