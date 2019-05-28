@@ -12,10 +12,10 @@ namespace SpilService
 
         public static SqlConnection GetConn()
         {
-            if (conn == null)
-            {
+            //if (conn == null)
+            //{
                 OpretConn();
-            }
+            //}
             return conn;
         }
         private static void OpretConn()
