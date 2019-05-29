@@ -474,3 +474,4 @@ healthchecksdb
 MigrationBackup/
 
 SpilService/SpilService/DBConn.cs
+WhistAngular/package-lock.json
