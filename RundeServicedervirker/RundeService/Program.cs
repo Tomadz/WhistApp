@@ -23,13 +23,13 @@ namespace RundeService
             {
                 var services = scope.ServiceProvider;
 
-                 try
+                // try
                  {
                      var context = services.GetRequiredService<RundeContext>();
                      //context.Database.Migrate();
                      SeedData.Initialize(services);
                  }
-                 catch (Exception ex)
+                 //catch (Exception ex)
                  {
                  }
             }

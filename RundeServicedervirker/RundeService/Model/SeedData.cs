@@ -74,14 +74,11 @@ namespace RundeService.Models
                     {
                         r.PlusId = myReader.GetInt32(5);
                     }
-                    catch (Exception)
-                    {}
-                    try
-                    {
-                        r.Makker = myReader.GetInt32(6);
+                    catch { }
+                    try { 
+                    r.Makker = myReader.GetInt32(6);
                     }
-                    catch (Exception)
-                    {}
+                    catch { }
                     r.Vundet = myReader.GetBoolean(7);
                     r.Beloeb = Convert.ToDouble(myReader.GetDecimal(8));
                     r.Spiller1 = myReader.GetInt32(9);
