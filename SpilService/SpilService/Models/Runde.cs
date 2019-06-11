@@ -15,7 +15,7 @@ namespace SpilService.Models
         public int PlusId { get; set; }
         public int Makker { get; set; }
         public bool Vundet { get; set; }
-        public double Beløb { get; set; }
+        public double Beloeb { get; set; }
         public int Spiller1 { get; set; }
         public int Spiller2 { get; set; }
         public int Spiller3 { get; set; }
