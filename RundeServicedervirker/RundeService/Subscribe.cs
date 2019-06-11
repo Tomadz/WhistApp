@@ -57,7 +57,8 @@ namespace RundeService
                 using (var scope = scopeFactory.CreateScope())
                 {
                     var _context = scope.ServiceProvider.GetRequiredService<RundeContext>();
-
+                    Runde sidsterunde = _context.Runder.Last();
+                    item.Id = sidsterunde.Id + 1;
                     //tilføj item til context.runder
                     _context.Runder.Add(item);
                     //vent på det er gemt

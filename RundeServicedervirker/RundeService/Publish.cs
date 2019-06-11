@@ -19,7 +19,7 @@ namespace RundeService
                 //serializer Runde til json og gør det til string til sidst
                 DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Runde));
                 MemoryStream msObj = new MemoryStream();
-                js.WriteObject(msObj, runde);
+                js.WriteObject(msObj, runde);  
                 msObj.Position = 0;
                 StreamReader sr = new StreamReader(msObj);
                 string json = sr.ReadToEnd();                // "{\"Description\":\"Share Knowledge\",\"Name\":\"C-sharpcorner\"}"  
