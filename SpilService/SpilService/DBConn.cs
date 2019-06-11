@@ -25,10 +25,10 @@ namespace SpilService
                     "Database=WhistDb;" +
                     //"Server=LAPTOP-4TKUM7H1;" + // Anders
                     //"Server=LAPTOP-OBRE2MJE;" + // Kristine
-                    "Server=LAPTOP-Q4Q4J29C;" + // Steen
-                    //"Server=DESKTOP-7IFDN7G;" + // Tomas
+                    //"Server=LAPTOP-Q4Q4J29C;" + // Steen
+                    "Server=DESKTOP-7IFDN7G;" + // Tomas
                     "Connect Timeout=60";
-            conn = new SqlConnection(connstring);
+            conn = new SqlConnection();
 
         }
     }
