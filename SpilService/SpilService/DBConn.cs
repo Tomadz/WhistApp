@@ -28,7 +28,7 @@ namespace SpilService
                     //"Server=LAPTOP-Q4Q4J29C;" + // Steen
                     "Server=DESKTOP-7IFDN7G;" + // Tomas
                     "Connect Timeout=60";
-            conn = new SqlConnection(connstring);
+            conn = new SqlConnection();
 
         }
     }
