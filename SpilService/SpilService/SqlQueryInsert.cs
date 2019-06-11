@@ -17,9 +17,14 @@ namespace SpilService
 
         public void RunderInsert(Runde item)
         {
-           
             conn.Open();
             SqlCommand cmd = new SqlCommand();
+
+            if (item.PlusId == 0)
+            {
+                item.PlusId = null;
+            }
+            
 
             cmd = new SqlCommand("INSERT INTO Runder " +
                 "Values (" + item.SpilId + "," + item.RundeNr + "," + item.Melder + "," + item.Melding + "," +
