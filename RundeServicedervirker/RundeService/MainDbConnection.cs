@@ -23,8 +23,8 @@ namespace RundeService
             string connstring = "User id =WhistDbAdgang; " + // \\ to get \
                     "Password=Whist; " +
                     "Database=WhistDb;" +
-                    "Server=LAPTOP-Q4Q4J29C;" + // Steen
-                    //"Server=DESKTOP-7IFDN7G;" + // not localhost
+                    //"Server=LAPTOP-Q4Q4J29C;" + // Steen
+                    "Server=DESKTOP-7IFDN7G;" + // Tomas
                     //"Server=LAPTOP-4TKUM7H1;" + // Anders
 
                     "Connect Timeout=60";
